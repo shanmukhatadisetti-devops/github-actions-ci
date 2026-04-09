@@ -1,0 +1,11 @@
+name: options
+on: [push]
+jobs:
+  options:
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+    - name: timeout
+      run: |
+        echo "sleep 2 minutes"
+        sleep 120

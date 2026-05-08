@@ -1,9 +1,12 @@
 name: OPTIONS 
 on: [push]
+concurrency:
+  group: ${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   options:
     runs-on: ubuntu-latest
-    timeout-minutes: 1
+    timeout-minutes: 5
     steps:
       - name: options
         run: |

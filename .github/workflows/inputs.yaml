@@ -1,0 +1,35 @@
+name: INPUTS
+on:
+  workflow_dispatch:
+    inputs:
+      approval_by:
+        description: "Enter Approval Name"
+        required: true
+        type: string
+      environment:
+        description: "Choose Environment Type"
+        required: true
+        type: environment
+      deployement:
+        description: "Want to do Deployment"
+        required: false
+        type: boolean
+      choose:
+        description: "Choose AM or PM"
+        type: choice
+        options:
+          - AM
+          - PM
+        required: true
+jobs:
+  inputs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: inputs
+        run: |
+          echo "Approval BY: ${{ github.event.inputs.approval_by }}"
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Choose: ${{ github.event.inputs.choose }} "
+      - name: Deployment
+        if: ${{ github.event.inputs.deployement == 'true' }} 
+        run: echo "hello Deployment"
